@@ -9,12 +9,77 @@ let timerId
 let xDirection = -2
 let yDirection = 2
 let score = 0
+//all blocks
+const blocks = []
 
 const userStart = [230, 10]
 let currentPosition = userStart
 
 const ballStart = [270, 40]
 let ballCurrentPosition = ballStart
+
+const blockLocations = [
+  {
+    x: 10,
+    y: 270
+  },
+  {
+    x: 120,
+    y: 270
+  },
+  {
+    x: 230,
+    y: 270
+  },
+  {
+    x: 340,
+    y: 270
+  },
+  {
+    x: 450,
+    y: 270
+  },
+  {
+    x: 10,
+    y: 240
+  },
+  {
+    x: 120,
+    y: 240
+  },
+  {
+    x: 230,
+    y: 240
+  },
+  {
+    x: 340,
+    y: 240
+  },
+  {
+    x: 450,
+    y: 240
+  },
+  {
+    x: 10,
+    y: 210
+  },
+  {
+    x: 120,
+    y: 210
+  },
+  {
+    x: 230,
+    y: 210
+  },
+  {
+    x: 340,
+    y: 210
+  },
+  {
+    x: 450,
+    y: 210
+  }
+]
 
 
 //create block
@@ -27,37 +92,17 @@ class Block {
     }
 }
 
-//all blocks
-const blocks = [
-    new Block(10,270),
-    new Block(120,270),
-    new Block(230,270),
-    new Block(340,270),
-    new Block(450,270),
-
-    new Block(10,240),
-    new Block(120,240),
-    new Block(230,240),
-    new Block(340,240),
-    new Block(450,240),
-
-    new Block(10,210),
-    new Block(120,210),
-    new Block(230,210),
-    new Block(340,210),
-    new Block(450,210),
-]
-
-console.log(blocks[0])
-
 //draw all blocks
 const addBlocks = () => {
 
-    for(let i = 0; i < blocks.length; i++) {
+    for (const key in blockLocations) {
+        const { x, y } = blockLocations[key]
+        const newBlock = new Block(x, y)
+        blocks.push(newBlock)
         const block = document.createElement('div')
         block.classList.add('block')
-        block.style.left = blocks[i].bottomLeft[0] + 'px'
-        block.style.bottom = blocks[i].bottomLeft[1] + 'px'
+        block.style.left = newBlock.bottomLeft[0] + 'px'
+        block.style.bottom = newBlock.bottomLeft[1] + 'px'
         grid.appendChild(block)
     }
 }
